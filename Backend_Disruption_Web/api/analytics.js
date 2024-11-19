@@ -5,16 +5,16 @@ module.exports = async (req, res) => {
   const { method, url } = req;
 
   // Menentukan endpoint berdasarkan URL
-  if (method === 'GET' && url === '/api/analytics/disruption-type-totals') {
+  if (method === 'GET' && url === 'analytics/disruption-type-totals') {
     return getDisruptionTypeTotals(req, res);
   } 
-  else if (method === 'GET' && url === '/api/analytics/weekly-disruption-type-counts') {
+  else if (method === 'GET' && url === 'analytics/weekly-disruption-type-counts') {
     return getWeeklyDisruptionTypeCounts(req, res);
   } 
-  else if (method === 'GET' && url === '/api/analytics/severity-level-counts') {
+  else if (method === 'GET' && url === 'analytics/severity-level-counts') {
     return getSeverityLevelCounts(req, res);
   } 
-  else if (method === 'GET' && url === '/api/analytics/total-severity-counts') {
+  else if (method === 'GET' && url === 'analytics/total-severity-counts') {
     return getTotalSeverityCounts(req, res);
   } 
   else {
