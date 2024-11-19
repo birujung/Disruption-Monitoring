@@ -8,27 +8,27 @@ module.exports = async (req, res) => {
   const id = url.split('/').pop(); // Mengambil id dari URL jika ada
 
   try {
-    if (method === 'POST' && url === 'users/register') {
+    if (method === 'POST' && url === '/users/register') {
       // Endpoint untuk registrasi user
       return await userController.createUser(req, res);
 
-    } else if (method === 'POST' && url === 'users/login') {
+    } else if (method === 'POST' && url === '/users/login') {
       // Endpoint untuk login user
       return await userController.loginUser(req, res);
 
-    } else if (method === 'GET' && url.startsWith('users/') && id) {
+    } else if (method === 'GET' && url.startsWith('/users/') && id) {
       // Endpoint untuk mendapatkan user berdasarkan ID
       await authenticateToken(req, res, async () => {
         return await userController.getUserById(req, res);
       });
 
-    } else if (method === 'PUT' && url.startsWith('users/') && id) {
+    } else if (method === 'PUT' && url.startsWith('/users/') && id) {
       // Endpoint untuk mengupdate user berdasarkan ID
       await authenticateToken(req, res, async () => {
         return await userController.updateUser(req, res);
       });
 
-    } else if (method === 'DELETE' && url.startsWith('users/') && id) {
+    } else if (method === 'DELETE' && url.startsWith('/users/') && id) {
       // Endpoint untuk soft delete user berdasarkan ID
       await authenticateToken(req, res, async () => {
         return await userController.deleteUser(req, res);

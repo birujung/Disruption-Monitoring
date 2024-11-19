@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "Backend_Disruption_Web/api/**/*.js",
+      "src": "Backend_Disruption_Web/api/*.js",
       "use": "@vercel/node"
     },
     {

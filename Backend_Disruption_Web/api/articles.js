@@ -15,21 +15,21 @@ module.exports = async (req, res) => {
 
   if (res.headersSent) return; // Jika autentikasi gagal, hentikan proses
 
-  if (method === 'POST' && url === 'articles/scrape') {
+  if (method === 'POST' && url === '/articles/scrape') {
     return scrapeAndSaveArticles(req, res);
   } 
   
-  if (method === 'GET' && url === 'articles') {
+  if (method === 'GET' && url === '/articles') {
     return getFilteredArticles(req, res);
   } 
   
-  if (method === 'GET' && url.startsWith('articles/')) {
+  if (method === 'GET' && url.startsWith('/articles/')) {
     const id = url.split('/').pop();
     req.params = { id };
     return getArticleById(req, res);
   } 
   
-  if (method === 'DELETE' && url.startsWith('articles/')) {
+  if (method === 'DELETE' && url.startsWith('/articles/')) {
     const id = url.split('/').pop();
     req.params = { id };
     return deleteArticle(req, res);
