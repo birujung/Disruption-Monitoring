@@ -10,13 +10,10 @@ function Register() {
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
 
-    // Base URL dari environment variable
-    const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "/api";
-
     const handleRegister = async (event) => {
         event.preventDefault();
         try {
-            const response = await fetch(`${API_BASE_URL}/users/register`, {
+            const response = await fetch("http://localhost:5001/api/users/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ name, email, password }),
@@ -25,7 +22,7 @@ function Register() {
             const data = await response.json();
 
             if (response.status === 201) {
-                navigate("/login");
+                navigate("/");
             } else {
                 setErrorMessage(data.message || "Registration failed.");
             }

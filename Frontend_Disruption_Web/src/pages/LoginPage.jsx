@@ -9,9 +9,6 @@ function Login() {
   const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
 
-  // Ambil API Base URL dari environment variable
-  const API_BASE_URL = process.env.REACT_APP_API_BASE_URL || "/api";
-
   const handleLogin = async (event) => {
     event.preventDefault();
 
@@ -21,7 +18,7 @@ function Login() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/users/login`, {
+      const response = await fetch("http://localhost:5001/api/users/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
@@ -30,10 +27,9 @@ function Login() {
       const data = await response.json();
 
       if (data.token) {
-        // Simpan token dan userId ke localStorage
         localStorage.setItem("token", data.token);
         localStorage.setItem("userId", data.userId);
-        navigate("/homepage"); // Redirect ke halaman homepage
+        navigate("/homepage");
       } else {
         setErrorMessage("Login failed. Please check your email and password.");
       }
